@@ -36,6 +36,14 @@ Considerations:
 - Progressive Enhancement: Start with available data (limited roll calls) while building infrastructure for expanded transparency. GovTrack's 20-year evolution shows how consistent tracking creates pressure for systemic change.
 - Modular Pipeline Design: Implement microservices architecture enabling independent scaling of PDF extraction, API integration, and visualization components.
 
+**Prashanthi:**
+Client Requirement- Track the  roll call votes of Massachusetts state legislatures and create visualizations to provide transparency to users.
+
+- Massachusetts House Journal (Source: PDF file) directly indicates the files are not official and may not have been proofread in entirety. Hence, we need to be sure we are submitting accurate data.
+Data quality issues such as inconsistent names of legislators, vote codes, or blank data may reduce trustworthiness of the tool. This is especially important in a transparency project where credibility is everything.
+- Votes are also not recorded formally (voice votes), so the system should not only show existing data but also prominently indicate locations of gaps, so as not to deceive users.
+- Clarification needed from clients- Timeframe of data, is automation needed, finalize visualization tool, should final visuals be embedded into Act on Mass webpage.
+
 ## Potential Solutions
 
 **Aviva:**
@@ -58,3 +66,14 @@ Considerations:
 - The recommended architecture follows an event-driven pattern with three core layers: ingestion (Apache Airflow orchestration with specialized PDF tools like Camelot), transformation (data normalization with fuzzy matching for entity resolution), and storage (PostgreSQL for transactional data, Elasticsearch for full-text search). This handles Massachusetts' three primary data streams: PDF journals, committee records, and web-based bill tracking from [malegislature.gov](https://malegislature.gov/).
 - Looker Studio offers advantages for budget-constrained transparency organizations (free licensing, 600+ connectors, mobile-responsive design) but has limitations: API quotas (200k tokens daily), performance degradation above 100k rows, and limited advanced visualizations.
 - Successful state implementations: California's [CalMatters Digital Democracy](https://digitaldemocracy.calmatters.org/) demonstrates incremental transparency advocacy, Texas Tribune's focused tools show the value of definitive resources, and Oregon's OLIS represents gold-standard government transparency. Commercial platforms like LegiScan's freemium model suggest sustainability through tiered services: free public access, premium features for organizations, and consulting leveraging staff expertise.
+
+**Prashanthi:**
+
+Approach Recommended:
+
+- Requirement gathering- Depending on the client requirement on time frame and size of the data being requested, tool selection is essential. For smaller medium sized data sets, it's possible to use Looker Studio, but bigger or more complex data sets might yield better results with Tableau, Power BI, or QuickSight.
+- Data collection- The Massachusetts State Legislature API (https://malegislature.gov/api/swagger/index.html?url=/api/swagger/v1/swagger.json#/) offers an extensive amount of data, such as bill information, event histories, and roll call data. My first step would be to scrape the data through  Airflow / Prefect API tools. Simultaneously, roll call data from the House Journal PDFs (https://malegislature.gov/Journal/House) can also be utilized. The two should also be automated—API pulls for the structured data and roll call extraction from the PDFs—so the pipeline is always aggregating information from a variety of channels.
+- Data cleansing and ETL pipelines - Establish automated cleaning pipelines to remove unexpected characters, standardize the names of legislators, and standardize vote codes and store it as a SQL database/CSV.
+- Handling missing votes- For uncaptured roll votes of bills, use semantic similarity analysis to cluster them with similar bills where voting history is available. This way, contextual information is obtained even when voting data is unavailable.
+- Visualization and testing with stakeholders- Design dashboards to meet client needs and test with stakeholders so the dashboard meets their needs. Integrate visuals into Act on Mass webpage if requested by clients.
+
