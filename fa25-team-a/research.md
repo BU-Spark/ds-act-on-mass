@@ -1,6 +1,44 @@
 # Team A Research
 
-## Problem Analysis
+This document for Team A's research is divided into two parts. The first section "Summarized Team Outputs" synthesizes the individual research contributions of each member into potential problems and solutions. This section should be used as the main source of truth for issues and methods team A will use on this project.
+
+The second section "Individual Research Output" contains the research points made by individual team members separated by person. This section is included in this document for reference and documentation purposes only, so each team members contributions are identifiable and measurable.
+
+## Summarized Team Output
+
+### Problem Analysis
+
+Concerns regarding the data source:
+* The house data appears straightforwards, but the Senate data is less clear; how are we going to be able to get role call votes for the Senate when they do not appear as obvious as the House documents?
+* How will we be able to tie each vote to the associated piece of legislation while doing bulk parsing?
+* How can we track inconsistencies, NA (voice votes/not recorded votes) and present missing data to not erode trustworthiness in reporting?
+* What range of role call votes do they want (all or a range of years?)
+
+
+Concerns regarding project deliverables:
+* What is the proper format for our data?
+* Will we encounter issues with the size of our dataset and the capbilities of Looker Studio that may cause us to reconsider our platform for visualization?
+* Where will the final output live? Will it be embedded on a webpage or linked to for interactivity? This may influence how we utilize Looker Studio.
+
+### Potential Solutions
+
+Solutions for Data Processing Stage:
+* We will take advantage of the provided API to document retrieval using traditional data scraping libraries (BeautifulSoup, Requests, Selenium, etc.) or Airflow / Prefect API tools.
+* Python libraries for PDF parsing to test for their performance on the PDF data include tabula-py, pdfplumber, pypdf, PyMuPDF
+* If we cannot utilize the provided Senate data, alternative sources for role calls can be explored (i.e. [Legiscan](https://legiscan.com/MA/bill/S3/2025))
+* Design and develop a robust ETL data cleaning pipeline that includes handling of missing votes, incorrect formatting or spelling of names, and other factors that we may encounter during the project. 
+
+Solutions for Project Deliverables:
+* Ask the client during our initial 10/1 kick off meeting for clarification regarding the final output to know where the final visualizations will live.
+* Stress test Looker Studio with our pipeline to know if it will support the data given the potential size of it so we can learn early on if we will need to adjust the tooling for performance.
+* Build a simple prototype of the entire project early on - parse a single House document, run it through a pipeline and create a simple visualization as a minimally viable product before scaling and automating.
+
+
+## Individual Research Outputs
+
+This section contains the individual research points made by each team member without edits exactly as they committed it initially before being summarized in the previous section.
+
+### Potential Problems
 
 **Aviva:**
 
@@ -44,7 +82,7 @@ Data quality issues such as inconsistent names of legislators, vote codes, or bl
 - Votes are also not recorded formally (voice votes), so the system should not only show existing data but also prominently indicate locations of gaps, so as not to deceive users.
 - Clarification needed from clients- Timeframe of data, is automation needed, finalize visualization tool, should final visuals be embedded into Act on Mass webpage.
 
-## Potential Solutions
+### Potential Solutions
 
 **Aviva:**
 
@@ -76,4 +114,3 @@ Approach Recommended:
 - Data cleansing and ETL pipelines - Establish automated cleaning pipelines to remove unexpected characters, standardize the names of legislators, and standardize vote codes and store it as a SQL database/CSV.
 - Handling missing votes- For uncaptured roll votes of bills, use semantic similarity analysis to cluster them with similar bills where voting history is available. This way, contextual information is obtained even when voting data is unavailable.
 - Visualization and testing with stakeholders- Design dashboards to meet client needs and test with stakeholders so the dashboard meets their needs. Integrate visuals into Act on Mass webpage if requested by clients.
-
