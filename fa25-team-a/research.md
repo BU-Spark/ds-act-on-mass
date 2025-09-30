@@ -9,10 +9,10 @@ The second section "Individual Research Output" contains the research points mad
 ### Problem Analysis
 
 Concerns regarding the data source:
-* The house data appears straightforwards, but the Senate data is less clear; how are we going to be able to get role call votes for the Senate when they do not appear as obvious as the House documents?
+* The house data appears straightforwards, but the Senate data is less clear; how are we going to be able to get roll call votes for the Senate when they do not appear as obvious as the House documents?
 * How will we be able to tie each vote to the associated piece of legislation while doing bulk parsing?
 * How can we track inconsistencies, NA (voice votes/not recorded votes) and present missing data to not erode trustworthiness in reporting?
-* What range of role call votes do they want (all or a range of years?)
+* What range of roll call votes do they want (all or a range of years?)
 
 
 Concerns regarding project deliverables:
@@ -25,7 +25,7 @@ Concerns regarding project deliverables:
 Solutions for Data Processing Stage:
 * We will take advantage of the provided API to document retrieval using traditional data scraping libraries (BeautifulSoup, Requests, Selenium, etc.) or Airflow / Prefect API tools.
 * Python libraries for PDF parsing to test for their performance on the PDF data include tabula-py, pdfplumber, pypdf, PyMuPDF
-* If we cannot utilize the provided Senate data, alternative sources for role calls can be explored (i.e. [Legiscan](https://legiscan.com/MA/bill/S3/2025))
+* If we cannot utilize the provided Senate data, alternative sources for roll calls can be explored (i.e. [Legiscan](https://legiscan.com/MA/bill/S3/2025))
 * Design and develop a robust ETL data cleaning pipeline that includes handling of missing votes, incorrect formatting or spelling of names, and other factors that we may encounter during the project. 
 
 Solutions for Project Deliverables:
@@ -59,7 +59,7 @@ Data collection: The process seems straightforward as the client gave us a concr
 - Do they want automation or do they just want what is currently there and leave it at that
 - How do they want us to handle the Senate votes?
 
-The last question is my biggest one. The house votes are very clearly given in the role call documents, but despite the senate journals saying they include role calls, I could not find a vote listing after looking through about 100 of them. The website does include bills which do come with votes.
+The last question is my biggest one. The house votes are very clearly given in the roll call documents, but despite the senate journals saying they include roll calls, I could not find a vote listing after looking through about 100 of them. The website does include bills which do come with votes.
 
 Visualization: The client requested us to use Google Looker Studio for visualizations, so no decision making is needed. After testing it out for the first time, a few questions came up.
 
@@ -95,9 +95,9 @@ Data quality issues such as inconsistent names of legislators, vote codes, or bl
 - For reading PDFs, the following libraries are worth exploring: tabula-py, pdfplumber, pypdf, PyMuPDF
 - Any scraping and downloading can be done using BeautifulSoup + Requests library in Python. Unless we really end up needing to use some strange sites for Senate data, we should not need to use Selenium.
 - The challenge will be seeing which library deals with the lack of visual structure in the pdf, as the text is clearly formatted in a table, but there are no visual lines to reference for each field.
-- If the Senate Journals do not clearly contain parsable role call votes, we can scrape the [Bills and Laws](https://malegislature.gov/Bills/Search) section of the website.
+- If the Senate Journals do not clearly contain parsable roll call votes, we can scrape the [Bills and Laws](https://malegislature.gov/Bills/Search) section of the website.
 - Alternatively, a website like [LegiScan](https://legiscan.com/MA/bill/S3/2025) gives a table for each vote that would be very easy to parse (automated scraping would be harder though, since it is not just mass downloading pdfs).
-- Questions about the inputs into Looker Studio and automation can be addressed in client meetings, for now, it is safe to assume that for an initial Minimal Viable Product, parsing a single house role call vote into a PDF, into a CSV file that is manually uploaded into Looker Studio and turned into a visualization is a good place to start.
+- Questions about the inputs into Looker Studio and automation can be addressed in client meetings, for now, it is safe to assume that for an initial Minimal Viable Product, parsing a single house roll call vote into a PDF, into a CSV file that is manually uploaded into Looker Studio and turned into a visualization is a good place to start.
 
 **Jason:**
 
