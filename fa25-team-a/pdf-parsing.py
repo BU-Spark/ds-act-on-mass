@@ -34,8 +34,31 @@ with open("/Users/avivafoster/ds701/ds-act-on-mass/fa25-team-a/HouseRollCall25.p
 
 #PyMuPDF
 import pymupdf
+
 doc = pymupdf.open("/Users/avivafoster/ds701/ds-act-on-mass/fa25-team-a/HouseRollCall25.pdf")
 for page in doc:
     text = page.get_text()
     print(text)
+
+
+#Referenced https://artifex.com/blog/extracting-tables-from-pdfs-with-pymupdf
+page1 = doc[0]
+tables = page1.find_tables(strategy = "text")
+table1 = tables[0]
+df = table1.to_pandas()
+print(df.shape)
+#for row in df.iterrows():
+#    print(row)
+
+"""
+if not tables.tables:
+    print("No tables found")
+else:
+    for index, table in enumerate(tables):
+        print("Table found:")
+        df_table = table.to_pandas()
+        print(df_table)
+#tables_df = doc[0].find_tables().tables[0].to_pandas()
+#tables_df = tables[0].to_pandas()
+"""
 
