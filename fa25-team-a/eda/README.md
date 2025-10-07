@@ -1,1 +1,1 @@
-# ReadME for Team A EDA
+# README for Team A EDA
