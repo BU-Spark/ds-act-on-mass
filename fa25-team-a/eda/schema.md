@@ -69,6 +69,42 @@ CREATE TABLE BillCategory(
 )
 ```
 
+[US Congress](https://www.congress.gov/help/find-bills-by-subject) uses the following categories for classifying bills:
+
+* Agriculture and Food
+* Animals
+* Armed Forces and National Security
+* Arts, Culture, Religion
+* Civil Rights and Liberties, Minority Issues
+* Commerce
+* Congress
+* Crime and Law Enforcement
+* Economics and Public Finance
+* Education
+* Emergency Management
+* Energy
+* Environmental Protection
+* Families
+* Finance and Financial Sector
+* Foreign Trade and International Finance
+* Government Operations and Politics
+* Health
+* Housing and Community Development
+* Immigration
+* International Affairs
+* Labor and Employment
+* Law
+* Native Americans
+* Public Lands and Natural Resources
+* Science, Technology, Communications
+* Social Welfare
+* Sports and Recreation
+* Taxation
+* Transportation and Public Works
+* Water Resources Development
+
+Since this list is extensive and some categories do not apply at the state level, the list of categories will be pared down by the team. Additionally, categorization of bills is a stretch goal beyond the scope of the initial minimally viable product so this work will be held until later in the project lifecycle for now.
+
 ### Vote Types Enum Table
 
 A simple enum table is added to store the types of votes made by each representative. While not necessary, it is preferable to use an integer to store the vote type instead of the repeated strings such as "Not Voting" or "Present", especially given the expected length of the Votes table.
