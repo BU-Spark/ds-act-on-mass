@@ -62,10 +62,12 @@ names = []
 for column in df_new:
     if (column + 2) % 2 == 0:
         for row in df_new[column][3:43]:
-            votes.append(row)
+            if row != "":
+                votes.append(row)
     else:
         for row in df_new[column][3:43]:
-            names.append(row)
+            if row != "":
+                names.append(row)
 
 #Creating dataframe out of lists
 data = list(zip(names, votes))
