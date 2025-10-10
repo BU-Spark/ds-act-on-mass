@@ -39,6 +39,7 @@ import pandas as pd
 doc = pymupdf.open("/Users/avivafoster/ds701/ds-act-on-mass/fa25-team-a/HouseRollCall25.pdf")
 for page in doc:
     text = page.get_text()
+    print(text)
 
 
 #Outputs individual values from PDF, which I think would be the most useful/easy to manipulate as needed
