@@ -36,7 +36,7 @@ with open("/Users/avivafoster/ds701/ds-act-on-mass/fa25-team-a/HouseRollCall25.p
 import pymupdf
 import pandas as pd
 
-doc = pymupdf.open("/Users/avivafoster/ds701/ds-act-on-mass/fa25-team-a/HouseRollCall25.pdf")
+doc = pymupdf.open("fa25-team-a/data/rawpdfs/HouseRollCall25.pdf")
 for page in doc:
     text = page.get_text()
 
