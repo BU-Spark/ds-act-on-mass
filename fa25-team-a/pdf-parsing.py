@@ -1,5 +1,5 @@
 ##Trying out different PDF parsing libraries
-
+#Initial exploration:
 """
 #Tabula:
 import tabula
@@ -39,7 +39,7 @@ import pandas as pd
 doc = pymupdf.open("/Users/avivafoster/ds701/ds-act-on-mass/fa25-team-a/HouseRollCall25.pdf")
 for page in doc:
     text = page.get_text()
-    print(text)
+
 
 #Outputs individual values from PDF, which I think would be the most useful/easy to manipulate as needed
 
@@ -48,8 +48,29 @@ page1 = doc[0]
 tables = page1.find_tables(strategy = "text")
 table1 = tables[0]
 df = table1.to_pandas()
-print(df)
 
-print(df.shape) #Need to reshape/restructure to be just two columns, name and vote
+
+#Need to reshape/restructure to be just two columns, name and vote
+
+
+#Renaming columns
+df_new = df.rename(columns = {df.columns[0]: 0, df.columns[1]: 1, df.columns[2]: 2, df.columns[3]: 3, df.columns[4]: 4, df.columns[5]: 5, df.columns[6]: 6, df.columns[7]: 7})
+
+#Creating lists of votes and names
+votes = []
+names = []
+for column in df_new:
+    if (column + 2) % 2 == 0:
+        for row in df_new[column][3:43]:
+            votes.append(row)
+    else:
+        for row in df_new[column][3:43]:
+            names.append(row)
+
+#Creating dataframe out of lists
+data = list(zip(names, votes))
+df_final = pd.DataFrame(data, columns = ["Name", "Vote"])
+print(df_final)
+
 
 #Need to generalize to work for any roll call sheet - call from API?
