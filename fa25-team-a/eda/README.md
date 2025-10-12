@@ -13,7 +13,8 @@ The eda folder is can be mapped to the following file tree:
  ┃ ┣ 📜Senate_data.ipynb
  ┃ ┗ 📜TODO.md
  ┣ 📂testing_pdf_parsing_libraries
- ┃ ┗ 📜pdf-parsing.py
+ ┃ ┣ 📜pdf-parsing.py
+ ┃ ┗ 📜pdf-parsing.ipynb
  ┗ 📜README.md
 
  Each subfolder within the main eda folder corresponds to an individual team member's contributions to our exploratory data analysis. Each team member has a section below that describes in further detail what work was done in their EDA process and how it contributes to the larger team product.
@@ -27,6 +28,8 @@ The eda folder is can be mapped to the following file tree:
 This script tests Approach 1 (API-based extraction) for the Massachusetts Legislature Senate Roll Call data. The script's goal is to see how much of the Senate’s (2025–2026) roll call data is accessible through the official Massachusetts Legislature API. By running this script, we can see which roll call numbers (1–100) return valid data and which do not. This helps the team decide whether to rely on the API or use an alternative data source such as the PDF files.
 
 ## House Roll Call PDF Parsing Library Exploration (Aviva Foster)
+
+Within the `testing_pdf_parsing_libraries` folder, there are two files, but `pdf-parsing.ipynb` is simply a reformatted Jupyter Notebook version of `pdf-parsing.py`, to make it easier to read and understand. This notebook shows brief testing of several different python libraries (tabula, pdfPlumber, PyPDF2, and PyMuPDF) that could have potential uses as PDF extraction/parsing methods, if we need to extract our data from PDF documents. Through this testing and exploration, I determined that the most likely candidate would be PyMuPDF, due to the way it read each cell of the table implied on the test document I used (`HouseRollCall25.pdf` in the data folder) into a new line. This made it much easier to reformat the parsed data into a workable pandas dataframe, where each legislator's name was paired with their vote. However, when tested with other Roll Call documents, small differences in formatting or scanning meant the pipeline I created was not able to generalize and be useful in parsing these other documents. A different approach may be needed in order to extract all of the data we need.
 
 ## Senate Data Alternative Parsing Method Exploration (Prashanthi Geesala)
 
