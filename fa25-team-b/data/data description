@@ -1,0 +1,18 @@
+194_senate_vote.csv
+  Overview
+ - This dataset contains detailed roll-call voting records from the 194th Massachusetts General Court (Senate branch), linking each legislative bill to the individual voting behavior of state senators.
+ - It was compiled by accessing the official Massachusetts Legislature API and combining multiple data layers, including bill information, roll-call metadata, and legislator identifiers.
+ - Each row represents a single senator’s vote on a specific bill during one roll call.
+
+  Data Structure
+ | Column Name        | Description                                                                   |
+| ------------------ | ----------------------------------------------------------------------------- |
+| **RollCallNumber** | Unique roll call identifier within the 194th General Court.                   |
+| **Branch**         | The legislative chamber (e.g., “Senate”).                                     |
+| **MemberCode**     | Unique legislator identifier code used by the MA Legislature API.             |
+| **Vote**           | The senator’s recorded vote (“Yea”, “Nay”, or occasionally “Present/Absent”). |
+| **MemberUrl**      | API link to detailed legislator information.                                  |
+| **billNumber**     | Legislative bill number associated with the roll call (e.g., “S15”, “H4530”). |
+| **vote_id**        | Synthetic unique identifier combining roll call number and legislator code.   |
+
+ 
