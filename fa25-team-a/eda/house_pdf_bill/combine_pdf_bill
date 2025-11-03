@@ -1,0 +1,28 @@
+import pandas as pd
+import re
+import os
+
+input_file = os.path.join(os.path.dirname(__file__), "../../data/parsedcsv/hjbills_raw.csv")
+output_file = os.path.join(os.path.dirname(__file__), "../../data/parsedcsv/hjbills_combined.csv")
+
+df = pd.read_csv(input_file)
+
+# ensure consistent column names
+# Normalize column names
+df.columns = [c.strip().lower().replace(" ", "_") for c in df.columns]
+
+# --- Extract bill info ---
+# Extract bill type (e.g., "H" or "S" from "H1234" or "S999")
+df["bill_type"] = df["bill_name"].str.extract(r"^([A-Za-z]+)")
+
+# Extract numeric bill number
+df["bill_number"] = df["bill_name"].str.extract(r"(\d+)")
+df["bill_number"] = pd.to_numeric(df["bill_number"], errors="coerce")
+
+# 6. export cleaned data
+df.to_csv(output_file, index=False)
+print(f"✅ Cleaned and augmented dataset saved to: {os.path.abspath(output_file)}")
+
+# 7. optional: print summary
+print("\nSummary:")
+print(df["bill_type"].value_counts())
