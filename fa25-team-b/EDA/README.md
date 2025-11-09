@@ -14,14 +14,3 @@ The eda File has information on how to scan through a document, organize it and 
 
 The dataExploration file downloads all documents in a general court iterates through them and find valid bill numbers and extracts the roll call number.
 
-Data 
-
-194_senate_bill_rollcall_mapping
-194_senate_legislators_info
-194_senate_rollcall_summary
-194_senate_vote
-amendments
-data_Bills_194
-houserollcalls_all_years
-ma_legislature_committees_193
-ma_legislature_committees_194
