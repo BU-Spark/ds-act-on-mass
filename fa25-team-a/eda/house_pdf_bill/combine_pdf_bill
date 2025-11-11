@@ -1,28 +1,52 @@
 import pandas as pd
-import re
 import os
+import re
 
-input_file = os.path.join(os.path.dirname(__file__), "../../data/parsedcsv/hjbills_raw.csv")
+# files
+hjbills_file = os.path.join(os.path.dirname(__file__), "../../data/parsedcsv/hjbills_raw.csv")
+ma_details_file = "/Users/jason/Downloads/MA_Bill_Details_raw.csv" 
 output_file = os.path.join(os.path.dirname(__file__), "../../data/parsedcsv/hjbills_combined.csv")
 
-df = pd.read_csv(input_file)
+# read data
+house_df = pd.read_csv(hjbills_file)
+details_df = pd.read_csv(ma_details_file)
 
-# ensure consistent column names
-# Normalize column names
-df.columns = [c.strip().lower().replace(" ", "_") for c in df.columns]
+# clean & normalize
+house_df.columns = [c.strip().lower().replace(" ", "_") for c in house_df.columns]
+details_df.columns = [c.strip().lower().replace(" ", "_") for c in details_df.columns]
 
-# --- Extract bill info ---
-# Extract bill type (e.g., "H" or "S" from "H1234" or "S999")
-df["bill_type"] = df["bill_name"].str.extract(r"^([A-Za-z]+)")
+# remove quorum
+house_df = house_df[~house_df["bill_name"].str.contains("quorum", case=False, na=False)]
 
-# Extract numeric bill number
-df["bill_number"] = df["bill_name"].str.extract(r"(\d+)")
-df["bill_number"] = pd.to_numeric(df["bill_number"], errors="coerce")
+# extract bill number & type
+house_df["bill_type"] = house_df["bill_name"].str.extract(r"^([A-Za-z]+)")
+house_df["bill_number"] = house_df["bill_name"].str.extract(r"(\d+)")
+house_df["bill_number"] = pd.to_numeric(house_df["bill_number"], errors="coerce")
 
-# 6. export cleaned data
-df.to_csv(output_file, index=False)
-print(f"✅ Cleaned and augmented dataset saved to: {os.path.abspath(output_file)}")
+# change H to House
+house_df["bill_type"] = house_df["bill_type"].str.upper().replace({"H": "House"})
 
-# 7. optional: print summary
-print("\nSummary:")
-print(df["bill_type"].value_counts())
+# extract bill number & type
+details_df["bill_type"] = details_df["billnumber"].astype(str).str.extract(r"^([A-Za-z]+)")
+details_df["bill_number"] = details_df["billnumber"].astype(str).str.extract(r"(\d+)")
+details_df["bill_number"] = pd.to_numeric(details_df["bill_number"], errors="coerce")
+details_df["bill_type"] = details_df["bill_type"].str.upper().replace({"H": "House"})
+
+# drop docketnum, title
+details_df = details_df.drop(columns=[c for c in ["docketnumber", "title"] if c in details_df.columns])
+
+# merge
+combined_df = pd.merge(
+    house_df,
+    details_df[["bill_type", "bill_number", "generalcourtnumber", "primarysponsorid", "primarysponsorname"]],
+    on=["bill_type", "bill_number"],
+    how="left"
+)
+
+# remove bill_name
+if "bill_name" in combined_df.columns:
+    combined_df = combined_df.drop(columns=["bill_name"])
+
+# save
+combined_df.to_csv(output_file, index=False)
+
