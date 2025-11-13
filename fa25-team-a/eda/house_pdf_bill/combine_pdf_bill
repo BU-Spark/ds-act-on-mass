@@ -3,20 +3,18 @@ import os
 import re
 
 # files
-hjbills_file = os.path.join(os.path.dirname(__file__), "../../data/parsedcsv/hjbills_raw.csv")
+hjbills_file = "/Users/jason/Downloads/hjbills_clean.tsv" 
 ma_details_file = "/Users/jason/Downloads/MA_Bill_Details_raw.csv" 
 output_file = os.path.join(os.path.dirname(__file__), "../../data/parsedcsv/hjbills_combined.csv")
 
 # read data
-house_df = pd.read_csv(hjbills_file)
+house_df = pd.read_csv(hjbills_file, sep="\t", engine="python")
+house_df["bill_id"] = house_df["bill_id"].astype(int)
 details_df = pd.read_csv(ma_details_file)
 
 # clean & normalize
 house_df.columns = [c.strip().lower().replace(" ", "_") for c in house_df.columns]
 details_df.columns = [c.strip().lower().replace(" ", "_") for c in details_df.columns]
-
-# remove quorum
-house_df = house_df[~house_df["bill_name"].str.contains("quorum", case=False, na=False)]
 
 # extract bill number & type
 house_df["bill_type"] = house_df["bill_name"].str.extract(r"^([A-Za-z]+)")
@@ -35,13 +33,19 @@ details_df["bill_type"] = details_df["bill_type"].str.upper().replace({"H": "Hou
 # drop docketnum, title
 details_df = details_df.drop(columns=[c for c in ["docketnumber", "title"] if c in details_df.columns])
 
+# keep bill
+details_df = details_df.drop_duplicates(subset=["bill_type", "bill_number"], keep="first")
+
+
 # merge
 combined_df = pd.merge(
     house_df,
     details_df[["bill_type", "bill_number", "generalcourtnumber", "primarysponsorid", "primarysponsorname"]],
     on=["bill_type", "bill_number"],
-    how="left"
+    how="left",
+    validate="many_to_one"  # ensures each house row maps to one detail row
 )
+
 
 # remove bill_name
 if "bill_name" in combined_df.columns:
