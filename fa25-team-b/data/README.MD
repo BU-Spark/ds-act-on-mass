@@ -13,3 +13,5 @@ amendments: data for amendments including parent bill number, branch, general co
 houserollcalls_all_years: contains roll call data for house branch, with legislator name, bill and amendment number and vote type
 
 rollcalls_with_legislator_info.csv displays complete house roll call data with legislator names, party, district, room and contact info 
+
+ma_house_legislators contains information on house representatives from the website including name, party, district , room and contact info
