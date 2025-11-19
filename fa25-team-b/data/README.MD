@@ -16,4 +16,4 @@ rollcalls_with_legislator_info.csv displays complete house roll call data with l
 
 ma_house_legislators contains information on house representatives from the website including name, party, district , room and contact info
 
-ma_house_legislators contains information on House representatives from MA Legislature API with full names, districts, party, and contact info for 1,923 members 
+house_legislators_2019_2022 contains information on House representatives from MA Legislature API with full names, districts, party, and contact info for 1,923 members. Actually, from 2001-2022 
