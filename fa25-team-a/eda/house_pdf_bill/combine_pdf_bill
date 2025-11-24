@@ -1,0 +1,56 @@
+import pandas as pd
+import os
+import re
+
+# files
+hjbills_file = "/Users/jason/Downloads/hjbills_clean.tsv" 
+ma_details_file = "/Users/jason/Downloads/MA_Bill_Details_raw.csv" 
+output_file = os.path.join(os.path.dirname(__file__), "../../data/parsedcsv/hjbills_combined.csv")
+
+# read data
+house_df = pd.read_csv(hjbills_file, sep="\t", engine="python")
+house_df["bill_id"] = house_df["bill_id"].astype(int)
+details_df = pd.read_csv(ma_details_file)
+
+# clean & normalize
+house_df.columns = [c.strip().lower().replace(" ", "_") for c in house_df.columns]
+details_df.columns = [c.strip().lower().replace(" ", "_") for c in details_df.columns]
+
+# extract bill number & type
+house_df["bill_type"] = house_df["bill_name"].str.extract(r"^([A-Za-z]+)")
+house_df["bill_number"] = house_df["bill_name"].str.extract(r"(\d+)")
+house_df["bill_number"] = pd.to_numeric(house_df["bill_number"], errors="coerce")
+
+# change H to House
+house_df["bill_type"] = house_df["bill_type"].str.upper().replace({"H": "House"})
+
+# extract bill number & type
+details_df["bill_type"] = details_df["billnumber"].astype(str).str.extract(r"^([A-Za-z]+)")
+details_df["bill_number"] = details_df["billnumber"].astype(str).str.extract(r"(\d+)")
+details_df["bill_number"] = pd.to_numeric(details_df["bill_number"], errors="coerce")
+details_df["bill_type"] = details_df["bill_type"].str.upper().replace({"H": "House"})
+
+# drop docketnum, title
+details_df = details_df.drop(columns=[c for c in ["docketnumber", "title"] if c in details_df.columns])
+
+# keep bill
+details_df = details_df.drop_duplicates(subset=["bill_type", "bill_number"], keep="first")
+
+
+# merge
+combined_df = pd.merge(
+    house_df,
+    details_df[["bill_type", "bill_number", "generalcourtnumber", "primarysponsorid", "primarysponsorname"]],
+    on=["bill_type", "bill_number"],
+    how="left",
+    validate="many_to_one"  # ensures each house row maps to one detail row
+)
+
+
+# remove bill_name
+if "bill_name" in combined_df.columns:
+    combined_df = combined_df.drop(columns=["bill_name"])
+
+# save
+combined_df.to_csv(output_file, index=False)
+
