@@ -1,0 +1,11 @@
+Project Definition
+
+For this project, we are focused on bridging the gaps in the data for the Massachusetts state legislature’s roll call votes and making it more accessible and transparent for citizens. Legislative data currently exists in unreadable PDF files that have missing details (like associated bills and IDs), making it difficult to track lawmaker progress. 
+Our goal is to therefore build a trackable, more structured, and accessible way to present roll call vote data. 
+A general workflow would be
+Build a data processing pipeline to extract, clean, and transform data from legislative sources.
+Standardize and structure datasets to ensure consistency in roll call numbers, bill names, legislator names, IDs, and other relevant details.
+Develop visualizations in Looker Studio that allow users to efficiently filter, search, and analyze legislative voting records.
+Document our workflow and methodology, providing a comprehensive report detailing all steps taken, challenges encountered, and approaches used.
+This approach will help citizens explore legislators’ voting patterns, track missed votes, and gain a better understanding of legislative trends over time.
+
