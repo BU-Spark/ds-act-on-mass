@@ -1,8 +1,8 @@
 .DS_Store
-/venv
-*.pdf
-**/*.csv
+**venv
 **/*.csv
 *.pdf
 /data
 .idea/
+*.csv
+*.tsv
