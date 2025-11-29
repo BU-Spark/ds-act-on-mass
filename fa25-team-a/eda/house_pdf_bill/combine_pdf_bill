@@ -2,7 +2,10 @@ import pandas as pd
 import os
 import re
 
-# files
+# # Source files:
+# hjbills_clean.tsv – House bills scraped/cleaned dataset
+# MA_Bill_Details_raw.csv: API-parsed bill data
+# Output will be written into the project data directory
 hjbills_file = "/Users/jason/Downloads/hjbills_clean.tsv" 
 ma_details_file = "/Users/jason/Downloads/MA_Bill_Details_raw.csv" 
 output_file = os.path.join(os.path.dirname(__file__), "../../data/parsedcsv/hjbills_combined.csv")
