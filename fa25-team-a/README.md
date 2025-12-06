@@ -73,14 +73,16 @@ fa25-team-a/processing/house_data_extraction/parse_house.ipynb
 fa25-team-a/processing/house_data_cleaning/merge_house_rep_data.ipynb
 ```
 
-After these steps are completed, the following .csv files should reflect the expected final output that would then be uploaded to BigQuery and linked into Looker Studio as per our methods for visualizations
+After these steps are completed, the following .csv files should reflect the expected final output that would then be uploaded to BigQuery and linked into Looker Studio as per our methods for visualizations.
 
 ```python
-fa25-team-a/data/parsedcsv/MA_senate_rollcall_votes_denorm.csv
-fa25-team-a/data/parsedcsv/hjrollcallvotes_final.csv
-fa25-team-a/data/parsedcsv/hjbills_final.csv
-fa25-team-a/data/parsedcsv/MA_legislature_members.csv
+fa25-team-a/data/final/MA_senate_rollcall_votes_denorm.csv
+fa25-team-a/data/final/hjrollcallvotes_final.csv
+fa25-team-a/data/final/hjbills_final.csv
+fa25-team-a/data/final/MA_legislature_members.csv
 ```
+
+Some other files may be present in the "final" folder but are used for creation of the senate_roll_call_votes_denorm.csv file and are not expected to be used for the final visualization.
 
 ## Project Description
 
