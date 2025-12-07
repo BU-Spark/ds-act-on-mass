@@ -94,6 +94,8 @@ Due to this inconsistency on how the data is stored and presented to the public,
 
 ## Data locations
 
+[Link to DATASETDOC](../dataset-documentation/DATASETDOC-teama-fa25.md)
+
 The dataset used for this project is an original creation by the team, primarily derived from the following two sources, but compiled and cleaned via our scraping and parsing methods.
 
 * Location 1: [MA Legislature Roll Call Vote API](https://malegislature.gov/api/swagger/index.html?url=/api/swagger/v1/swagger.json#/SenateJournals)
