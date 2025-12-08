@@ -14,3 +14,4 @@ The eda File has information on how to scan through a document, organize it and 
 
 The dataExploration file downloads all documents in a general court iterates through them and find valid bill numbers and extracts the roll call number.
 
+The house_legislators_scraper scrapes through the Malegislative website to get legislator names and other info.

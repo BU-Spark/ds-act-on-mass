@@ -21,23 +21,25 @@ Our code will generate different files of data organized into tables to be sent 
 You should also include a short description of what each part of your code does. (Detailed description in the readme of each directory, if applicable)
 * /bill_exploration.ipynb - This imports committee data and topic categorization
   - This is there to compare a bill and their committee that wrote the bill to create a topic for which we can categorize our data with.
-* /EDA - The EDA Folder currently contains most of our important scripts.
-  - These will later be separated to have the final scripts outside of this folder and instead be in the main team folder.
-* /EDA/all_senate_data_import.ipynb
+* /EDA - The EDA Folder now contains most of our testings scripts.
+  - These are mainly as testing for what was needed.
+* /dataImport - Contains all of the scripts needed to get the data information that we have in our looker.
+* /dataImport/all_senate_data_import.ipynb
   - This imports the Senate's data and organizes it to fit the formatting needed
   - This has a way to import one general court (year) for all Senate data
   - It also generally imports bills and checks for roll calls though that is limited to only the Senate.
-* /EDA/Full_House_RollCall_scraper.ipynb
+* /dataImport/Full_House_RollCall_scraper.ipynb
   - Gets the PDFs from the malegislature website to be able to get the roll call data for the House
-* /EDA/parse_house_rollcall_data.ipynb
-  - This now parses through the data gathered from Full_House_RollCall_scraper.ipynb to be able to get it in a readable format
+* /dataImport/parse_house_rollcall_data.ipynb
+  - This parses through the data gathered from Full_House_RollCall_scraper.ipynb to be able to get it in a readable format
+* /dataImport/house_legislators_scraper.ipynb
+  - This works through the data obtained by the parse_house_rollcall_data.ipynb file and adds the legislator data to it for the final data prep.
 
 ## How To Use
 
 Currently it will take a while to reproduce everything we have gotten.
 The main data files to add to our Looker Studio are written in <a href="#key-features">Key Features</a>. 
 Run through all of those and as of writing this that would give most if not all the data needed to be added to Looker studio.
-Potentially might need to merge the datasets in Looker.
  
 ## Project Description
 

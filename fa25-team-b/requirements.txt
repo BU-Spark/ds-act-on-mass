@@ -1,3 +1,11 @@
 requests
 pandas
 openpyxl
+ast
+time
+bs4
+pdfplumber
+glob
+traceback
+random
+urllib
