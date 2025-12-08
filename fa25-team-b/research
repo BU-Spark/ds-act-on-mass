@@ -1,0 +1,59 @@
+Project Research
+
+PyPDF is an open source python library for reading PDF files which is possibly required if the API only returns PDFs. 
+It is possible though that the API might be able to request a different file type as we haven’t found the in-depth documentation of the API at this point but all given research indicated it was only supposed to return PDF files.  
+
+https://github.com/py-pdf/pypdf. 
+
+LegiScan filtered to MA and using their API could be an alternative source of some of the files if the Public API does not work entirely or we wish to use another system to verify some of the validity of our systems. 
+While quickly using the online method for accessing the API it often had errors answering requests so it might not work consistently but this could also be an issue only with the online version of the API. 
+
+https://legiscan.com/. 
+
+Python libraries like pdfplumber can help with conducting web scraping and parsing over data stored in PDF files. 
+It is also especially useful for extracting tabular data and can provide accessible information about the individual characters that are not just text that exist in the files. 
+We would have to test the compatibility of using this library based on the data sources we finalize to include as part of our actual research. 
+
+https://pypi.org/project/pdfplumber/
+
+A technical challenge to overcome would be having variances in the formatting of legislators’ names, and a way to overcome it would be to first create a master list of legislators and use matching techniques to standardize the names across the different datasets. 
+Through APIs like OpenStates we can link the standardized legislator IDs with roll call data.  
+
+https://v3.openstates.org/docs 
+
+Once we have a clean dataset, it can be loaded onto Excel or Google sheets, used to create visualizations and made public on Looker Studio accordingly. 
+
+https://cloud.google.com/looker/docs/studio?visit_id=638946848630572735-3805817462&rd=1
+
+GovTrack is an independent, publicly accessible website providing legislative and voting data on the U.S. Congress. It enables users to track bill progress and review lawmakers voting histories. 
+This platform can serve as a benchmark case study for our project.
+
+A related research: Méndez, G. G., Moreno, O., & Mendoza, P. (2022, August). 
+'Legislatio: A visualization tool for legislative roll-call vote data. In Proceedings of the 15th international symposium on visual information communication and interaction' (pp. 1-8). 
+https://dl.acm.org/doi/abs/10.1145/3554944.3554957?casa_token=MzM1PYhpVZ4AAAAA:b4kfMvr8CZZLET_07OFJo7wO6HaUI3LvZ9Eaji2VZGLSNgixjuv5m1KV8EBLIzL873h1aN1VL7f0 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+I found a scraper that we could try to implement into our own project. 
+
+One relevant research item I found for this project is a vote scraping tool developed by OpenStates, 
+which includes a custom scraper designed specifically for extracting roll call vote data from Massachusetts House and Senate journal PDFs. 
+This scraper is highly relevant to the problem because it addresses the core challenge of the project: the lack of accessible, 
+structured legislative voting records. The tool parses complex and inconsistently formatted PDF files, 
+extracting detailed information such as legislator names, vote types (yes, no, not voting), bill numbers, motions, and outcomes. 
+By using this scraper as a starting point, we can significantly streamline the data collection process and begin building the cleaned dataset needed for analysis and visualization in Looker Studio.
+
+https://github.com/openstates/openstates-scrapers/blob/main/scrapers/ma/votes.py
