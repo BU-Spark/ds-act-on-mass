@@ -1,10 +1,19 @@
 ##Trying out different PDF parsing libraries
+#This is the same information as in the `pdf-parsing.ipynb` file
 #Initial exploration:
+
+#creating relative file path
+from pathlib import Path
+current_directory = Path().absolute()
+parent1 = current_directory.parent
+parent2 = parent1.parent
+file = parent2 / 'data/rawpdfs' / 'HouseRollCall25.pdf'
+
 """
 #Tabula:
 import tabula
 
-test1_df = tabula.read_pdf("/Users/avivafoster/ds701/ds-act-on-mass/fa25-team-a/HouseRollCall25.pdf", pages = "all")
+test1_df = tabula.read_pdf(file, pages = "all")
 print(test1_df)
 
 #Outcome has a lot of NaN instead of names
@@ -14,7 +23,7 @@ print(test1_df)
 #pdfPlumber
 import pdfplumber
 
-test2_df = pdfplumber.open("/Users/avivafoster/ds701/ds-act-on-mass/fa25-team-a/HouseRollCall25.pdf")
+test2_df = pdfplumber.open(file)
 print(test2_df.chars)
 
 #Seems annoying to use
@@ -24,7 +33,7 @@ print(test2_df.chars)
 #PyPDF2; referenced https://www.geeksforgeeks.org/python/introduction-to-python-pypdf2-library/
 import PyPDF2
 
-with open("/Users/avivafoster/ds701/ds-act-on-mass/fa25-team-a/HouseRollCall25.pdf", "rb") as pdf_file:
+with open(file, "rb") as pdf_file:
     reader = PyPDF2.PdfReader(pdf_file)
     text = reader.pages[0].extract_text()
     print(text)
@@ -36,7 +45,7 @@ with open("/Users/avivafoster/ds701/ds-act-on-mass/fa25-team-a/HouseRollCall25.p
 import pymupdf
 import pandas as pd
 
-doc = pymupdf.open("fa25-team-a/data/rawpdfs/HouseRollCall25.pdf")
+doc = pymupdf.open(file)
 for page in doc:
     text = page.get_text()
 
@@ -99,6 +108,7 @@ def parse_pdf(file_path):
     data = list(zip(names, votes))
     return (pd.DataFrame(data, columns = ["Name", "Vote"]))
 
-#print(parse_pdf("/Users/avivafoster/ds701/ds-act-on-mass/fa25-team-a/combined2025_RollCalls.pdf"))
+#Trying with more data:
+# print(parse_pdf("/Users/avivafoster/ds701/ds-act-on-mass/fa25-team-a/combined2025_RollCalls.pdf"))
 #Isn't working since the new document was read in with more/inconsistent columns
 #Would PyPDF2 be more useful after all?? Maybe using regexes etc...

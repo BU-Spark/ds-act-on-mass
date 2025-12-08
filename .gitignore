@@ -6,3 +6,5 @@
 .idea/
 *.csv
 *.tsv
+!house_datasetdictionary.csv
+!senate_datasetdictionary.csv

@@ -1,0 +1,15 @@
+field name,	mode,	type,	description, example
+court_number, NOT NULL, INTEGER, The General Court session number a vote took place in, 193
+rollcall_number, NOT NULL, INTEGER, The number that a roll call vote took place within the same session. Increments from 0, 1
+bill_name, NOT NULL, STRING, The given name of a bill that is being vote on in this voting instance, S2003
+member_code, NOT NULL, STRING, The unique member code associated with the representative casting the current vote, RAB_1 
+is_presiding_officer, NOT NULL, BOOLEAN, A bit that represents whether the current voter is the presiding authority of the voting branch (i.e. President of the Senate), TRUE
+vote_value, NOT NULL, STRING, The raw vote value for a given voting instance. Valid values include Y N X and P, Y
+full_name, NOT NULL, STRING, The full name string of a voting represntative. Includes first and last name along with any additional names, Karen E. Spilka
+district, NOT NULL, STRING, The senate district a representative is elected to represent, Dartmouth
+party, NOT NULL, STRING, The political party a given representitive is affiliated with, Democrat
+branch, NOT NULL, STRING, The branch of government a representative serves in. In this dataset it always equals Senate, Senate
+presiding_officer_name, NOT NULL, STRING, A string of the presiding officer for a given vote. Used for calculating whether a representative voted in line with the presiding officer of a voting instance (tracking unanimity with caucuses), Karen E. Spilka
+presiding_officer_vote, NOT NULL, STRING, The raw vote value on a given voting instance. May not match the vote_value for this current voter but is used for comparison metrics. Same valid values as vote_value, Y
+session_year, NOT NULL, STRING, The calendar year a voting instance takes place in, 2025
+is_active_member, NOT NULL, STRING, A string with yes or no values that indicates where a member is currently still serving in the Senate. Used for aggregating voting trends for members who are currently active (including past votes for still active representatives), yes
