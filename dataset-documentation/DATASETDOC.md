@@ -1,309 +1,82 @@
-Project Information
-* What is the project name?
+***Project Information*** 
 
-Act On Mass
-
-* What is the link to your project’s GitHub repository?
-
-https://github.com/BU-Spark/ds-act-on-mass/tree/fa25-team-b-eda/fa25-team-b
-
-* What is the link to your project’s Google Drive folder?
-
-(Spark!-Owned Folder)
-https://drive.google.com/drive/folders/1I7e076N35iZQbr06d3kU_-kKzO84D84O?usp=drive_link
-
-* In your own words, what is this project about? What is the goal of this project?
-
-The goal of this project is to build an end-to-end data pipeline and a set of Looker Studio dashboards that make legislative voting data easier to collect, clean, explore, and interpret. By transforming unstructured Senate and House records into a structured, query-ready format, we enable Act on Mass and the public to efficiently track roll call votes, analyze legislative behavior, and uncover trends across sessions, committees, and topics.
-
-* Who is the client for the project?
-
-Act on Mass
-
-* Who are the client contacts for the project?
-
-Scotia Hille (Executive Director)
-
+* What is the project name?  
+* What is the link to your project’s GitHub repository?   
+* What is the link to your project’s Google Drive folder? \*\**This should be a Spark\! Owned Google Drive folder \- please contact your PM if you do not have access\*\**  
+* In your own words, what is this project about? What is the goal of this project?   
+* Who is the client for the project?  
+* Who are the client contacts for the project?  
 * What class was this project part of?
 
-DS701
-
-Dataset Information
-* What data sets did you use in your project?
-
-https://drive.google.com/drive/folders/1OUWr0nCNVn-fuCgMjx9DsKhQOeVVgq4u?usp=drive_link
-
-* Data Dictionary
-
-https://docs.google.com/document/d/1FmJKcThVYJ70bcMUeRIoyvhK-zTwKD5fw5aeNdkitRM/edit?usp=sharing
-
-* Keywords / Tags
-
-Domains:
-* OCR
-* Text Extraction
-* NLP
-* Data Parsing
-* Tabular Data
-
-Topics:
-* Civic Tech
-* Voting
-* Government Transparency
-* Legislative Data
-* Accountability
-
-Techniques:
-* PDF scraping
-* Data cleaning
-* Visualization
-* API integration
-
-Motivation
-
-The dataset was created to fill a major transparency gap in Massachusetts government. Roll call votes are publicly available but extremely difficult to access because:
-
-* They are published only as individual PDF documents
-* They are not linked to the bills or amendments they relate to
-* Names and formatting are inconsistent
-* No unified, analyzable dataset exists
-
-The dataset aims to:
-
-* Extract all roll call votes into a machine-readable format
-* Link votes to bills and amendments
-* Allow public analysis of how legislators vote
-* Power an interactive dashboard that supports transparency efforts
-
-Composition
-* What do instances represent?
-
-Each instance represents:
-
-* A single legislator’s vote
-* On a roll call
-* Linked to a bill or amendment
-
-Additional instance types:
-* Individual roll calls
-* Bills / amendments
-* Legislator metadata
-
-* Data format
-
-Raw data:
-* PDF text from Massachusetts Legislature website
-
-Processed data:
-* Tabular CSV including fields such as:
-
-rollcalls
-name
-vote
-billnumber
-amendment_number
-Generalcourtnumber
-Party
-Room
-EmailAddress
-RoomNumber
-Branch
-Phone
-District
-MemberCode
-LeadershipPosition
-SessionParticipation
-TotalYeas
-TotalNays
-TotalNV
-AverageAttendance
-Member1
-Member2
-Cordex
-Member1Party
-Member2Party
-Member1Position
-Member2Position
-SameParty
-AnyLeader
-BothLeaders
-CrossPartyHighSim
-TotalVotes
-YeaCount
-NayCount
-AbsentCount
-MajorityLeaderCode
-MajorityLeaderVote
-AlignedWithLeaderCount
-AlignmentRate
-IsUnanimous
-UnanimityVoteType
-PartyAligned_D
-PartyAligned_R
+***Dataset Information***
 
-* Number of instances
+* What data sets did you use in your project? Please provide a link to the data sets, this could be a link to a folder in your GitHub Repo, Spark\! owned Google Drive Folder for this project, or a path on the SCC, etc.  
+* Please provide a link to any data dictionaries for the datasets in this project. If one does not exist, please create a data dictionary for the datasets used in this project. **(Example of data dictionary)**   
+* What keywords or tags would you attach to the data set?  
+  * Domain(s) of Application: Computer Vision, Object Detection, OCR, Image Classification, Image Segmentation, Facial Recognition, NLP, Topic Modeling, Sentiment Analysis, Named Entity Recognition, Text Classification, Summarization, Anomaly Detection, Other   
+  * Sustainability, Health, Civic Tech, Voting, Housing, Policing, Budget, Education, Transportation, etc. 
 
-809,482 total rows
+*The following questions pertain to the datasets you used in your project.*   
+*Motivation* 
 
-* Does the dataset contain all instances?
+* For what purpose was the dataset created? Was there a specific task in mind? Was there a specific gap that needed to be filled? Please provide a description. 
 
-It aims to include all roll calls for General Court sessions 181–194, but gaps may exist due to:
+*Composition*
 
-* Missing PDFs
-* Formatting changes
-* Scanned/non-text PDFs requiring OCR
+* What do the instances that comprise the dataset represent (e.g., documents, photos, people, countries)? Are there multiple types of instances (e.g., movies, users, and ratings; people and interactions between them; nodes and edges)? What is the format of the instances (e.g., image data, text data, tabular data, audio data, video data, time series, graph data, geospatial data, multimodal (please specify), etc.)? Please provide a description.   
+* How many instances are there in total (of each type, if appropriate)?  
+* Does the dataset contain all possible instances or is it a sample (not necessarily random) of instances from a larger set? If the dataset is a sample, then what is the larger set? Is the sample representative of the larger set? If so, please describe how this representativeness was validated/verified. If it is not representative of the larger set, please describe why not (e.g., to cover a more diverse range of instances, because instances were withheld or unavailable).  
+* What data does each instance consist of? “Raw” data (e.g., unprocessed text or images) or features? In either case, please provide a description.   
+* Is there any information missing from individual instances? If so, please provide a description, explaining why this information is missing (e.g., because it was unavailable). This does not include intentionally removed information, but might include redacted text.   
+* Are there recommended data splits (e.g., training, development/validation, testing)? If so, please provide a description of these splits, explaining the rationale behind them  
+* Are there any errors, sources of noise, or redundancies in the dataset? If so, please provide a description.   
+* Is the dataset self-contained, or does it link to or otherwise rely on external resources (e.g., websites, tweets, other datasets)? If it links to or relies on external resources,   
+  * Are there guarantees that they will exist, and remain constant, over time;  
+  * Are there official archival versions of the complete dataset (i.e., including the external resources as they existed at the time the dataset was created)?  
+  * Are there any restrictions (e.g., licenses, fees) associated with any of the external resources that might apply to a dataset consumer? Please provide descriptions of all external resources and any restrictions associated with them, as well as links or other access points as appropriate.   
+* Does the dataset contain data that might be considered confidential (e.g., data that is protected by legal privilege or by doctor-patient confidentiality, data that includes the content of individuals’ non-public communications)? If so, please provide a description.   
+* Does the dataset contain data that, if viewed directly, might be offensive, insulting, threatening, or might otherwise cause anxiety? If so, please describe why.   
+* Is it possible to identify individuals (i.e., one or more natural persons), either directly or indirectly (i.e., in combination with other data) from the dataset? If so, please describe how.   
+* Dataset Snapshot, if there are multiple datasets please include multiple tables for each dataset. 
 
-* Missing information
 
-Some PDFs lack:
+| Size of dataset |  |
+| :---- | :---- |
+| Number of instances |  |
+| Number of fields  |  |
+| Labeled classes |  |
+| Number of labels  |  |
 
-* Bill numbers
-* Amendment numbers
-* Motion text
-* Legislator initials (e.g., "Rogers")
 
-* Errors or noise
+  
+*Collection Process*
 
-* Duplicate legislator names
-* OCR errors
-* Inconsistent vote labels (Yea/Yes/Y, Nay/No/N, NV)
-* Formatting differences between pages
+* What mechanisms or procedures were used to collect the data (e.g., API, artificially generated, crowdsourced \- paid, crowdsourced \- volunteer, scraped or crawled, survey, forms, or polls, taken from other existing datasets, provided by the client, etc)? How were these mechanisms or procedures validated?  
+* If the dataset is a sample from a larger set, what was the sampling strategy (e.g., deterministic, probabilistic with specific sampling probabilities)?  
+* Over what timeframe was the data collected? Does this timeframe match the creation timeframe of the data associated with the instances (e.g., recent crawl of old news articles)? If not, please describe the timeframe in which the data associated with the instances was created. 
 
-* External resources
+*Preprocessing/cleaning/labeling* 
 
-* Legislature PDFs
-* Legislature API
-* Open States API
+* Was any preprocessing/cleaning/labeling of the data done (e.g., discretization or bucketing, tokenization, part-of-speech tagging, SIFT feature extraction, removal of instances, processing of missing values)? If so, please provide a description. If not, you may skip the remaining questions in this section.   
+* Were any transformations applied to the data (e.g., cleaning mismatched values, cleaning missing values, converting data types, data aggregation, dimensionality reduction, joining input sources, redaction or anonymization, etc.)? If so, please provide a description.   
+* Was the “raw” data saved in addition to the preprocessed/cleaned/labeled data (e.g., to support unanticipated future uses)? If so, please provide a link or other access point to the “raw” data, this could be a link to a folder in your GitHub Repo, Spark\! owned Google Drive Folder for this project, or a path on the SCC, etc.  
+* Is the code that was used to preprocess/clean the data available? If so, please provide a link to it (e.g., EDA notebook/EDA script in the GitHub repository). 
 
-* Confidential or sensitive data
+*Uses* 
 
-None — all information is public legislative data.
+* What tasks has the dataset been used for so far? Please provide a description.   
+* What (other) tasks could the dataset be used for?  
+* Is there anything about the composition of the dataset or the way it was collected and preprocessed/cleaned/labeled that might impact future uses?   
+* Are there tasks for which the dataset should not be used? If so, please provide a description.
 
-* Identifiability
+*Distribution*
 
-Legislators (public officials) can be identified by name; no private individuals included.
+* Based on discussions with the client, what access type should this dataset be given (eg., Internal (Restricted), External Open Access, Other)?
 
-Dataset Snapshots
-all_sessions_legislators
+*Maintenance* 
 
-* Size: 201 kB
-* Instances: 2,478
-* Fields: 10
+* If others want to extend/augment/build on/contribute to the dataset, is there a mechanism for them to do so? If so, please provide a description. 
 
-house_full_sessions_cleaned_2
+*Other*
 
-* Size: 94.6 MB
-* Instances: 788,994
-* Fields: 19
-
-house_legislators_2019_2022
-
-* Size: 139 kB
-* Instances: 1,923
-* Fields: 9
-
-house_participation
-
-* Size: 320 bytes
-* Instances: 2
-* Fields: 6
-
-house_session_vote_summary
-
-* Size: 363 bytes
-* Instances: 12
-* Fields: 4
-
-senate_average_attendance
-
-* Size: 209 bytes
-* Instances: 8
-* Fields: 2
-
-senate_member_corr
-
-* Size: 1.4 MB
-* Instances: 13,228
-* Fields: 12
-
-senate_rollcall_alignment_summary
-
-* Size: 169 KB
-* Instances: 2,827
-* Fields: 15
-
-Collection Process
-* Mechanisms
-
-* PDFs scraped using Python (re, pdfplumber)
-* Bill + committee metadata from Legislature API
-
-* Sampling Strategy
-
-* Full-population dataset
-
-* Timeframe
-
-* Data collected in 2025
-* Roll calls originate from the 194th General Court
-
-Preprocessing
-
-* Extract PDF text (pdfplumber or OCR)
-* Segment roll calls
-* Link roll calls to bills/amendments
-* Clean and standardize legislator names
-* Normalize vote codes (Y/N/P/NV)
-* Remove duplicates
-* Validate counts
-
-Transformations
-
-* PDF → structured text → tabular
-* Join with bill metadata
-* Normalize inconsistent fields
-
-Raw Data
-
-Stored in project Drive/GitHub.
-
-Code
-
-ETL pipeline + notebooks stored in GitHub.
-
-Uses
-* Used For
-
-* Tracking legislator voting behavior
-* Missed vote analysis
-* Linking votes to policy topics
-* Civic transparency dashboards
-* Trend analysis
-
-* Could Be Used For
-
-* Vote prediction models
-* Topic modeling of bills
-* Network analysis of voting blocs
-* Legislative similarity scores
-
-* Limitations
-
-* OCR errors
-* PDF format inconsistency
-
-Distribution
-* Access Type
-
-External Open Access (Public Transparency Dataset)
-
-Maintenance
-* Contribution Mechanism
-
-Future contributors can:
-
-* Add new legislative sessions
-* Improve parsing logic
-* Update rosters
-* Fix OCR errors
-* Submit GitHub pull requests
+* Is there any other additional information that you would like to provide that has not already been covered in other sections?
