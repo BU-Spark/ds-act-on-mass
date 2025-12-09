@@ -44,32 +44,19 @@ Domains:
 * Tabular Data
 
 Topics:
-* Civic Tech
-* Voting
-* Government Transparency
-* Legislative Data
-* Accountability
+* Civic Tech, Voting,Government Transparency, Legislative Data, Accountability
 
 Techniques:
-* PDF scraping
-* Data cleaning
+* PDF scraping, Data cleaning
 * Visualization
 * API integration
 
 Motivation:
 The dataset was created to fill a major transparency gap in Massachusetts government. Roll call votes are publicly available but extremely difficult to access because:
 
-* They are published only as individual PDF documents
-* They are not linked to the bills or amendments they relate to
-* Names and formatting are inconsistent
-* No unified, analyzable dataset exists
+* They are published only as individual PDF documents and are not linked to the bills or amendments they relate to. Names and formatting are inconsistent and there are no unified, analyzable dataset exists
 
-The dataset aims to:
-
-* Extract all roll call votes into a machine-readable format
-* Link votes to bills and amendments
-* Allow public analysis of how legislators vote
-* Power an interactive dashboard that supports transparency efforts
+The dataset aims to extract all roll call votes into a machine-readable form,Link votes to bills and amendments. we also want to allow public analysis of how legislators vote and power an interactive dashboard that supports transparency efforts
 
 Composition
 * What do instances represent?
@@ -161,9 +148,11 @@ Some PDFs lack:
 * Legislature PDFs
 * Legislature API
 * Open States API
-* Confidential or sensitive data
 
-Noneall information is public legislative data.
+
+  Confidential or sensitive data
+
+None becayse all information is public legislative data.
 
 * Identifiability
 
@@ -253,6 +242,7 @@ Uses
 * Linking votes to policy topics
 * Civic transparency dashboards
 * Trend analysis
+
 
 * Could Be Used For
 
