@@ -136,29 +136,61 @@ Where the final datasets live:
 * Some test subsets exist in the repository’s team-b-eda branch
 * The cleaned datasets include 2 main datasets: one for senate and one for house data
 
+## **How to Use**
 
-## How To Use
+Reproducing the full dataset will take some time, as the pipeline processes both Senate and House legislative records. The main data files used for Looker Studio are generated through the notebooks located in the `dataImport` folder.
 
-It will take a while to reproduce everything we have gotten.
-The main data files to add to our Looker Studio are written in the dataImports folder. 
+Follow the steps below **in order**:
 
-Run the scripts in this order:
 
-Senate Data
+### **1. Senate Data Import**
+
+Run:
+
+```
 dataImport/all_senate_data_import.ipynb
+```
 
-Scrape House PDFs
+This notebook downloads, extracts, and structures all Senate roll call data.
+
+
+### **2. Scrape House Roll Call PDFs**
+
+Run:
+
+```
 dataImport/Full_House_RollCall_scraper.ipynb
+```
 
-Parse PDFs
+This script collects House roll call PDFs (single-page and combined files) from the Legislature website.
+
+
+### **3. Parse House Roll Call PDFs**
+
+Run:
+
+```
 dataImport/parse_house_rollcall_data.ipynb
+```
 
-Add Legislator Data
+This notebook extracts vote tables, metadata, and bill information from the scraped PDFs.
+
+
+### **4. Add Legislator Data**
+
+Run:
+
+```
 dataImport/house_legislators_scraper.ipynb
+```
 
-Upload Tables to Looker Studio
+This adds House legislator names, districts, and metadata into the structured dataset.
 
-Once processed, these datasets can be added directly to Looker Studio dashboards.
+
+### **5. Upload Final Tables to Looker Studio**
+
+Once all scripts have been executed, the final processed datasets can be uploaded directly into **Looker Studio** to power interactive dashboards.
+
 
 ## Tools and Platforms 
 
