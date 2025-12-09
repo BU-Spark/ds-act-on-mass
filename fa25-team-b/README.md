@@ -92,13 +92,19 @@ To ensure all necessary libraries are installed, follow these steps:
 
 3. The `requirements.txt` file should include the following libraries:
   ```
-  pandas
-  numpy
-  requests
-  beautifulsoup4
-  PyPDF2
-  openpyxl
-  jupyter
+requests
+pandas
+numpy
+openpyxl
+ast
+time
+bs4
+pdfplumber
+glob
+traceback
+random
+urllib
+jupyter 
   ```
 
 ## Repository Structure 
