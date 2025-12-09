@@ -30,13 +30,10 @@ DS701
 
 Dataset Information
 * What data sets did you use in your project?
-
 https://drive.google.com/drive/folders/1OUWr0nCNVn-fuCgMjx9DsKhQOeVVgq4u?usp=drive_link
-
 * Data Dictionary
 
 https://docs.google.com/document/d/1FmJKcThVYJ70bcMUeRIoyvhK-zTwKD5fw5aeNdkitRM/edit?usp=sharing
-
 * Keywords / Tags
 
 Domains:
@@ -59,8 +56,7 @@ Techniques:
 * Visualization
 * API integration
 
-Motivation
-
+Motivation:
 The dataset was created to fill a major transparency gap in Massachusetts government. Roll call votes are publicly available but extremely difficult to access because:
 
 * They are published only as individual PDF documents
@@ -86,7 +82,7 @@ Each instance represents:
 
 Additional instance types:
 * Individual roll calls
-* Bills / amendments
+* Bills snd/amendments
 * Legislator metadata
 
 * Data format
@@ -96,7 +92,6 @@ Raw data:
 
 Processed data:
 * Tabular CSV including fields such as:
-
 rollcalls
 name
 vote
@@ -142,42 +137,33 @@ PartyAligned_D
 PartyAligned_R
 
 * Number of instances
-
 809,482 total rows
-
 * Does the dataset contain all instances?
-
 It aims to include all roll calls for General Court sessions 181–194, but gaps may exist due to:
 
 * Missing PDFs
 * Formatting changes
 * Scanned/non-text PDFs requiring OCR
-
 * Missing information
 
 Some PDFs lack:
 
-* Bill numbers
+* Bill  numbers
 * Amendment numbers
 * Motion text
-* Legislator initials (e.g., "Rogers")
-
+* Legislator initials (ex:"Rogers")
 * Errors or noise
-
 * Duplicate legislator names
 * OCR errors
-* Inconsistent vote labels (Yea/Yes/Y, Nay/No/N, NV)
+* Inconsistent vote labels (Yea/Yes/Y,Nay/No/N, NV)
 * Formatting differences between pages
-
 * External resources
-
 * Legislature PDFs
 * Legislature API
 * Open States API
-
 * Confidential or sensitive data
 
-None — all information is public legislative data.
+Noneall information is public legislative data.
 
 * Identifiability
 
@@ -187,7 +173,7 @@ Dataset Snapshots
 all_sessions_legislators
 
 * Size: 201 kB
-* Instances: 2,478
+* Instances: 2478
 * Fields: 10
 
 house_full_sessions_cleaned_2
@@ -206,7 +192,7 @@ house_participation
 
 * Size: 320 bytes
 * Instances: 2
-* Fields: 6
+* Fields:  6
 
 house_session_vote_summary
 
@@ -234,21 +220,16 @@ senate_rollcall_alignment_summary
 
 Collection Process
 * Mechanisms
-
-* PDFs scraped using Python (re, pdfplumber)
-* Bill + committee metadata from Legislature API
-
+* PDFs scraped using Python (re,pdfplumber)
+* Bill + committee metadata from legislature API
 * Sampling Strategy
-
 * Full-population dataset
-
 * Timeframe
 
 * Data collected in 2025
 * Roll calls originate from the 194th General Court
 
 Preprocessing
-
 * Extract PDF text (pdfplumber or OCR)
 * Segment roll calls
 * Link roll calls to bills/amendments
@@ -258,21 +239,14 @@ Preprocessing
 * Validate counts
 
 Transformations
-
-* PDF → structured text → tabular
+* PDF to structured tto tabular
 * Join with bill metadata
 * Normalize inconsistent fields
 
 Raw Data
-
 Stored in project Drive/GitHub.
 
-Code
-
-ETL pipeline + notebooks stored in GitHub.
-
 Uses
-* Used For
 
 * Tracking legislator voting behavior
 * Missed vote analysis
