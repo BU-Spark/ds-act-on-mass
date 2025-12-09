@@ -237,12 +237,7 @@ Stored in project Drive/GitHub.
 
 Uses
 
-* Tracking legislator voting behavior
-* Missed vote analysis
-* Linking votes to policy topics
-* Civic transparency dashboards
-* Trend analysis
-
+The dataset has been used primarily for tracking legislator voting behavior, analyzing missed votes, linking roll call outcomes to specific policy topics, building civic transparency dashboards, and identifying trends across legislative sessions. Beyond these core applications, the dataset could also support more advanced analyses such as vote prediction models. However, the data comes with limitations, like inconsistencies in PDF formatting across years, both of which introduce noise and require careful cleaning.
 
 * Could Be Used For
 
