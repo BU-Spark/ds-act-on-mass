@@ -70,7 +70,8 @@ Massachusetts Legislature Public API (https://malegislature.gov/api/swagger/inde
 ### Project Data Storage
 
 Due to file size restrictions:
-* Final datasets are stored in the ACT on Mass Team B Google Drive
+* Final datasets are stored in the ACT on Mass Team B Google Drive in the FinalData Folder
+  * https://drive.google.com/drive/u/2/folders/1OUWr0nCNVn-fuCgMjx9DsKhQOeVVgq4u
 * Working data is stored locally or within private branches when running the pipeline (team-b-eda branch)
 
 ## Quick Start 
