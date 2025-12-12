@@ -53,16 +53,16 @@ Senate & House Roll Call Extraction
 Looker Studio–Ready Outputs
 * All output tables are cleaned, standardized, and formatted to be directly uploaded into Looker Studio dashboards.
 
-## Datasets
+## Data Sources
 
 Official roll call data for the Senate and House, accessed through:
 
-Massachusetts Legislature Website:
+Massachusetts Legislature Website (https://malegislature.gov/Journal/House/193):
 * PDF documents containing House and Senate roll call information
 * Legislator names, bill and amendment numbers, and vote type
 * Unstructured and unlinked, inconsistently formatted over the years
 
-Massachusetts Legislature Public API:
+Massachusetts Legislature Public API (https://malegislature.gov/api/swagger/index.html?url=/api/swagger/v1/swagger.json#/):
 * Contains vote records, bill data, committee assignments
 * Data often incomplete, inconsistent, or duplicated
 
