@@ -208,7 +208,7 @@ This adds House legislator names, districts, and metadata into the structured da
 
 Once all scripts have been executed, the final processed datasets can be uploaded directly into **Looker Studio** to power interactive dashboards.
 
-### **House Dataset Quick-Run Option**
+### **6. House Dataset Quick-Run Option**
 
 For generating the House dataset specifically for Looker, you may simply run the following notebooks in order:
 
