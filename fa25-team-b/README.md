@@ -123,17 +123,27 @@ Exploratory and testing notebooks used during the initial development of the pip
 Our code will generate different files of data organized into tables to be sent into a looker studio report/
 
 * /dataImport - Contains all of the scripts needed to get the data information that we have in our looker.
+##### Main Senate data collection method
 * /dataImport/all_senate_data_import.ipynb
   - This imports the Senate's data and organizes it to fit the formatting needed
   - This has a way to import one general court (year) for all Senate data
   - It also generally imports bills and checks for roll calls though that is limited to only the Senate.
+##### House data collection method - version 1
 * /dataImport/Full_House_RollCall_scraper.ipynb
   - Gets the PDFs from the malegislature website to be able to get the roll call data for the House
 * /dataImport/parse_house_rollcall_data.ipynb
   - This parses through the data gathered from Full_House_RollCall_scraper.ipynb to be able to get it in a readable format
 * /dataImport/house_legislators_scraper.ipynb
   - This works through the data obtained by the parse_house_rollcall_data.ipynb file and adds the legislator data to it for the final data prep.
-
+##### House data collection method - version 2 (for Looker dataset）
+* /dataImport/house_pdf_collection.ipynb
+  - Get all PDF files containing roll call records
+* /dataImport/house_data_import.ipynb
+  - Extract roll call information from PDFs (2003-2008, 2018-2025)
+* /dataImport/house_2009_2017.ipynb
+  - Extract roll call information from PDFs (2009-2017)
+* /dataImport/legislator_info_merge.ipynb
+  - Combining legislator information with roll-call voting
 ### 3. Data Outputs
 
 Where the final datasets live:
