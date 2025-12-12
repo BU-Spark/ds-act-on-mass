@@ -1,0 +1,20 @@
+Data 
+
+194_senate_bill_rollcall_mapping : check if bill number has roll call data available
+
+194_senate_legislators_info: contains member code, party affiliation, branch of legislature, leadership position, email address,phone and roll number for legislators
+
+194_senate_rollcall_summary: contains senate roll call info according to motion
+
+194_senate_vote: contains senate vote info according to roll call number, with member code and vote id
+
+amendments: data for amendments including parent bill number, branch, general court number, url
+
+houserollcalls_all_years: contains roll call data for house branch, with legislator name, bill and amendment number and vote type
+
+Houserollcallsmerged1.csv and Houserollcallsmerged2 both display complete house roll call data with legislator names, party, district, room and contact info 
+
+ma_house_legislators contains information on house representatives from the website including name, party, district , room and contact info
+
+house_legislators_2019_2022 contains information on House representatives from MA Legislature API with full names, districts, party, and contact info for 1,923 members. Actually, from 2001-2022 
+

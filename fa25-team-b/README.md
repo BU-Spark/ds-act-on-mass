@@ -3,11 +3,11 @@
   <br>
   <a href="https://www.bu.edu/spark/" target="_blank"><img src="https://www.bu.edu/spark/files/2023/08/logo.png" alt="BUSpark" width="200"></a>
   <br>
-  Project README Template <change to project name>
+  ACTonMass Legislative Vote Tracker
   <br>
 </h1>
 
-<h4 align="center">A template for the project readme file. </h4> <change to repo short description>
+<h4 align="center">A tool to collect, process, and visualize legislative voting data in Massachusetts.</h4>
 
 <p align="center">
   <a href="#key-features">Key Features</a> •
@@ -16,63 +16,228 @@
   <a href="#data-locations">Data Locations</a>
 </p>
 
+## Overview
+
+The ACTonMass Legislative Vote Tracker is designed to collect, clean, and analyze legislative roll call voting data for the Massachusetts House and Senate. The goal is to produce a unified dataset that powers interactive Looker Studio dashboards, enabling deeper transparency into how legislators vote, how often they miss votes, and how voting patterns evolve across legislative sessions.
+
+This project transforms raw legislative records, including PDFs, roll call tables, and legislator information, into structured, analysis-ready tables. These tables support public-facing accountability tools that allow users to explore legislators, bills, committees, and voting trends.
+
+## Goal
+
+The primary objective of this project is to build a reproducible data pipeline that:
+* Automates the ingestion of legislative data from authoritative sources
+* Standardizes and integrates House and Senate roll call information
+* Categorizes bills by committee topic
+* Produces clean datasets usable in Looker Studio visualizations
+
+With these outputs, we enable ACTonMass and the public to answer questions such as:
+
+* How does each legislator vote across different topics?
+* Which legislators miss the most votes?
+* What trends exist across legislative sessions?
+* How are roll call numbers connected to specific bills, amendments, or committees?
+
+This work helps support legislative transparency and empowers organizations to track voter accountability effectively.
+
 ## Key Features
-In this section you will be including a list of key features of your code/project.
 
-You should also include a short description of what each part of your code does. (Detailed description in the readme of each directory, if applicable)
-* /path/to/directory - function and description
-  - Key notes
-* /path/to/script - function and description
-  - Key notes
-* Lorem Ipsum - Dolor Sit Amet
-  - Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-* Duis Aute Irure Dolor
-  - Excepteur sint occaecat
-* Excepteur Sint Occaecat
-  - Curabitur efficitur, nunc non ultricies gravida, felis purus posuere eros, sed faucibus sapien est nec quam. Nulla at nisl nisl.
- 
-## How To Use
+Full Legislative Data Pipeline
+* A modular pipeline that gathers, parses, cleans, and integrates voting datasets from the Massachusetts Legislature.
 
-To clone and run this application, you'll need <a href="https://git-scm.com" target="_blank">Git</a>
-From your command line:
+Topic & Committee Categorization
+* Bill and committee data are aligned to create topic categories for interactive filtering in Looker Studio dashboards.
 
-```bash
-# Clone this repository
-$ git clone [repo link]
+Senate & House Roll Call Extraction
+* Automated scraping of Senate data and PDF extraction/parsing of House roll call PDFs.
 
-# Further Instructions
-...
+Looker Studio–Ready Outputs
+* All output tables are cleaned, standardized, and formatted to be directly uploaded into Looker Studio dashboards.
+
+## Data Sources
+
+Official roll call data for the Senate and House, accessed through:
+
+Massachusetts Legislature Website (https://malegislature.gov/Journal/House/193):
+* PDF documents containing House and Senate roll call information
+* Legislator names, bill and amendment numbers, and vote type
+* Unstructured and unlinked, inconsistently formatted over the years
+
+Massachusetts Legislature Public API (https://malegislature.gov/api/swagger/index.html?url=/api/swagger/v1/swagger.json#/):
+* Contains vote records, bill data, committee assignments
+* Data often incomplete, inconsistent, or duplicated
+
+
+### Project Data Storage
+
+Due to file size restrictions:
+* Final datasets are stored in the ACT on Mass Team B Google Drive in the FinalData Folder
+  * https://drive.google.com/drive/u/2/folders/1OUWr0nCNVn-fuCgMjx9DsKhQOeVVgq4u
+* Working data is stored locally or within private branches when running the pipeline (team-b-eda branch)
+
+## Quick Start 
+### Requirements.txt Instructions
+
+To ensure all necessary libraries are installed, follow these steps:
+
+1. Create a virtual environment (optional but recommended):
+  ```bash
+  python -m venv venv
+  source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+  pip install --upgrade pip
+  ```
+
+2. Install the required libraries:
+  ```bash
+  pip install -r requirements.txt
+  ```
+
+3. The `requirements.txt` file should include the following libraries:
+  ```
+requests
+pandas
+numpy
+openpyxl
+ast
+time
+bs4
+pdfplumber
+glob
+traceback
+random
+urllib
+jupyter 
+  ```
+
+## Repository Structure 
+
+### 1. EDA/
+Purpose:
+Exploratory and testing notebooks used during the initial development of the pipeline.
+
+* /bill_exploration.ipynb - This imports committee data and topic categorization
+  - This is there to compare a bill and their committee that wrote the bill to create a topic for which we can categorize our data with.
+* The EDA Folder contains most of our testings scripts.
+  - These are mainly as testing for what was needed.
+
+### 2. dataImport/
+
+Our code will generate different files of data organized into tables to be sent into a looker studio report/
+
+* /dataImport - Contains all of the scripts needed to get the data information that we have in our looker.
+##### Main Senate data collection method
+* /dataImport/all_senate_data_import.ipynb
+  - This imports the Senate's data and organizes it to fit the formatting needed
+  - This has a way to import one general court (year) for all Senate data
+  - It also generally imports bills and checks for roll calls though that is limited to only the Senate.
+##### House data collection method - version 1
+* /dataImport/Full_House_RollCall_scraper.ipynb
+  - Gets the PDFs from the malegislature website to be able to get the roll call data for the House
+* /dataImport/parse_house_rollcall_data.ipynb
+  - This parses through the data gathered from Full_House_RollCall_scraper.ipynb to be able to get it in a readable format
+* /dataImport/house_legislators_scraper.ipynb
+  - This works through the data obtained by the parse_house_rollcall_data.ipynb file and adds the legislator data to it for the final data prep.
+##### House data collection method - version 2 (for Looker dataset）
+* /dataImport/house_pdf_collection.ipynb
+  - Get all PDF files containing roll call records
+* /dataImport/house_data_import.ipynb
+  - Extract roll call information from PDFs (2003-2008, 2018-2025)
+* /dataImport/house_2009_2017.ipynb
+  - Extract roll call information from PDFs (2009-2017)
+* /dataImport/legislator_info_merge.ipynb
+  - Combining legislator information with roll-call voting
+  
+### 3. Data Outputs
+
+Where the final datasets live:
+
+* ACT on Mass Team B Google Drive (due to file size)
+* Some test subsets exist in the repository’s team-b-eda branch
+* The cleaned datasets include 2 main datasets: one for senate and one for house data
+
+## **How to Use**
+
+Reproducing the full dataset will take some time, as the pipeline processes both Senate and House legislative records. The main data files used for Looker Studio are generated through the notebooks located in the `dataImport` folder.
+
+Follow the steps below **in order**:
+
+
+### **1. Senate Data Import**
+
+Run:
+
+```
+dataImport/all_senate_data_import.ipynb
 ```
 
-Create a new branch from dev, add changes on the new branch you just created.
+This notebook downloads, extracts, and structures all Senate roll call data.
 
-You will want to look into <a href="https://git-scm.com/docs/git-branch" target="_blank">git branch</a> and <a href="https://git-scm.com/docs/git-checkout" target="_blank">git checkout</a>
 
-```bash
-# Create and Checkout a new branch if it doesn't exist
-$ git checkout -b your-branch main
-...
+### **2. Scrape House Roll Call PDFs**
+
+Run:
+
+```
+dataImport/Full_House_RollCall_scraper.ipynb
 ```
 
-Open a Pull Request to dev. Add your PM and TPM as reviewers. 
+This script collects House roll call PDFs (single-page and combined files) from the Legislature website.
 
-At the end of the semester during project wrap up open a final Pull Request to main from dev branch.
- 
-## Project Description
 
-In this section, you should include the project description, either from the client or spark.
+### **3. Parse House Roll Call PDFs**
 
-Please make sure it reflects what you see on the documents (project description) you recieved.
+Run:
 
-* Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. Donec vel nunc at libero ultrices tincidunt. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Mauris ut ligula nec risus posuere ultricies at et ligula. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-* Veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+```
+dataImport/parse_house_rollcall_data.ipynb
+```
 
-## Data locations
+This notebook extracts vote tables, metadata, and bill information from the scraped PDFs.
 
-In this section, you should include the location of all of your datasets for the project (if applicable)
 
-<a href="dataset-documentation">Dataset Documentation</a>
-* Location 1: [location]
-  - [description]
-* Location 2: [location]
-  - [description]
+### **4. Add Legislator Data**
+
+Run:
+
+```
+dataImport/house_legislators_scraper.ipynb
+```
+
+This adds House legislator names, districts, and metadata into the structured dataset.
+
+
+### **5. Upload Final Tables to Looker Studio**
+
+Once all scripts have been executed, the final processed datasets can be uploaded directly into **Looker Studio** to power interactive dashboards.
+
+### **6. House Dataset Quick-Run Option**
+
+For generating the House dataset specifically for Looker, you may simply run the following notebooks in order:
+
+1. `dataImport/house_pdf_collection.ipynb`
+2. `dataImport/house_data_import.ipynb`
+3. `dataImport/house_2009_2017.ipynb`
+4. `dataImport/legislator_info_merge.ipynb`
+   
+## Tools and Platforms 
+
+* Processing: pandas, numpy, BeautifulSoup, PyPDF2
+* Visualization: Google Looker Studio
+* Environment: Jupyter Notebooks
+* Storage: Google Drive (ACT ON MASS Team B Shared Folder)
+
+## Challenges 
+
+1. House PDF Complexity
+The House publishes roll calls only as PDFs → requiring advanced text parsing and manual edge-case handling.
+
+2. Inconsistent Formats
+Senate vs. House data structures vary significantly and must be standardized.
+
+3. Large Data Volume
+Full sessions contain thousands of PDFs and roll calls, leading to long processing time and large output files.
+
+## Recommendation for next steps 
+
+* Complete data gaps: Fill remaining missing legislator names for full accountability coverage
+* Enable public access: Deploy dashboard for Massachusetts voters to track representatives before elections
+* Expand functionality: Add real-time updates, bill text integration, and Act on Mass priority issue tracking
