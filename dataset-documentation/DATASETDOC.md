@@ -80,4 +80,3 @@
 *Other*
 
 * Is there any other additional information that you would like to provide that has not already been covered in other sections?
-

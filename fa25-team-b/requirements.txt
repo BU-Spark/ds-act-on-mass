@@ -1,5 +1,6 @@
 requests
 pandas
+numpy
 openpyxl
 ast
 time
@@ -9,3 +10,4 @@ glob
 traceback
 random
 urllib
+jupyter 
