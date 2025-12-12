@@ -3,11 +3,11 @@
   <br>
   <a href="https://www.bu.edu/spark/" target="_blank"><img src="https://www.bu.edu/spark/files/2023/08/logo.png" alt="BUSpark" width="200"></a>
   <br>
-  ACTonMass Legislative Vote Tracker
+  ACTonMass Team B <change to project name>
   <br>
 </h1>
 
-<h4 align="center">A tool to collect, process, and visualize legislative voting data in Massachusetts.</h4>
+<h4 align="center">A gathering of legislator's votes on bills in Massachussets </h4> <change to repo short description>
 
 <p align="center">
   <a href="#key-features">Key Features</a> •
