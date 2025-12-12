@@ -1,0 +1,10 @@
+.DS_Store
+**venv
+**/*.csv
+*.pdf
+/data
+.idea/
+*.csv
+*.tsv
+!house_datasetdictionary.csv
+!senate_datasetdictionary.csv

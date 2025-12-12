@@ -1,0 +1,19 @@
+field name,	mode,	type,	description, example
+court_number,	NULLABLE,	INTEGER, The General Court number session the vote took place, 193
+rollcall_count_for_year,	NULLABLE,	INTEGER, The count of a roll call vote within a General Court session. Increments starting from 0, 1
+member_code,	NULLABLE,	STRING, Unique identifier used by the MA legislature to identify representatives within their system, RAB_1
+vote_value,	NULLABLE,	STRING, The actual vote made on a roll call vote instance. Valid values include Y N X and P, Y
+is_speaker,	NULLABLE,	BOOLEAN, A bit that represents where a voter is the Speaker of the House, TRUE
+is_after_vote,	NULLABLE,	BOOLEAN, A bit that represents whether a vote was taken after the fact, TRUE
+bill_name,	NULLABLE,	STRING, The string of the name of the bill being voted on, H1003
+rollcall_date,	NULLABLE,	DATE, The date a roll call vote took place. Takes the format mm/dd/yyyy, 01/01/2025
+rollcall_time,	NULLABLE,	STRING, The time a roll call vote took place. Takes the format HH:MM AM/PM, 11:25 AM
+yea_vote_count,	NULLABLE,	INTEGER, The number of yea votes for a given roll call vote. This value is parsed from the raw PDF of a roll call vote and is used for validation purposes, 153
+nay_vote_count,	NULLABLE,	INTEGER, The number of nay votes for a given roll call vote. This value is parsed from the raw PDF of a roll call vote and is used for validation purposes,
+not_voting_count,	NULLABLE,	INTEGER, The number of not-voting votes for a given roll call vote. This value is parsed from the raw PDF of a roll call vote and is used for validation purposes,
+validated,	NULLABLE,	BOOLEAN, A bit that represents whether a given vote passed validation checks done in the cleaning pipeline, TRUE
+full_name,	NULLABLE,	STRING, The full name (typically first and last but may include additional names) of a voting representative, Ron Marino
+branch,	NULLABLE,	STRING, The branch of government a member serves in. Is always "house" for this dataset but came from a table of representatives that was merged into this dataset, House
+party_affiliation,	NULLABLE,	STRING, The party a representative is affiliated with, Democrat
+district,	NULLABLE,	STRING, The district a representative is elected to represent. This may change over time for a representative and is only associated with a given legislative general court session, 6th Worcester
+court_year,	NULLABLE,	INTEGER, The calendar year a general court session is associated with, 2007
