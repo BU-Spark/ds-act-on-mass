@@ -144,6 +144,7 @@ Our code will generate different files of data organized into tables to be sent 
   - Extract roll call information from PDFs (2009-2017)
 * /dataImport/legislator_info_merge.ipynb
   - Combining legislator information with roll-call voting
+  
 ### 3. Data Outputs
 
 Where the final datasets live:
@@ -207,7 +208,15 @@ This adds House legislator names, districts, and metadata into the structured da
 
 Once all scripts have been executed, the final processed datasets can be uploaded directly into **Looker Studio** to power interactive dashboards.
 
+### **House Dataset Quick-Run Option**
 
+For generating the House dataset specifically for Looker, you may simply run the following notebooks in order:
+
+1. `dataImport/house_pdf_collection.ipynb`
+2. `dataImport/house_data_import.ipynb`
+3. `dataImport/house_2009_2017.ipynb`
+4. `dataImport/legislator_info_merge.ipynb`
+   
 ## Tools and Platforms 
 
 * Processing: pandas, numpy, BeautifulSoup, PyPDF2
